@@ -3,7 +3,7 @@ grammar PythonS;
 prog: decVars* decFunc* blocoMain
     ;
 
-decVars: type (listaIds | listaAtribs) ';'
+decVars: VALUETYPES (listaIds | listaAtribs) ';'
     ;
     
 // type: 'int'
@@ -17,16 +17,16 @@ REAL_TYPE: 'real';
 STRING_TYPE: 'string';
 BOOLEAN_TYPE: 'boolean';
 VOID_TYPE: 'void';
-type: INT_TYPE | REAL_TYPE | STRING_TYPE | BOOLEAN_TYPE | VOID_TYPE;
+VALUETYPES: INT_TYPE | REAL_TYPE | STRING_TYPE | BOOLEAN_TYPE | VOID_TYPE;
 
 listaIds : ID(',' ID)*
     ;
 listaAtribs:  ID '=' (ID|NUMBER_VALUE|STRING|BOOL_VALUE)
     ;
 //decFunc: ('def' ID '(' listaParams* ')' type '{' decVars* decFunc* stmt+ '}')+
-decFunc: ('def' ID '(' listaParams* ')' type '{' decVars* stmt+ '}')+
+decFunc: ('def' ID '(' listaParams* ')' VALUETYPES '{' decVars* stmt* '}')+
     ;
-blocoMain: 'def' 'main' '(' ')' '{' stmt+  '}'
+blocoMain: 'def' 'main' '(' ')' '{' stmt*  '}'
     ;
 stmt: for_statement
     | dowhile_statement ';'
@@ -69,7 +69,7 @@ factor: '(' expr ')' (';')?
 range:
 INT_VALUE ':' INT_VALUE (':' INT_VALUE)?
 ;
-listaParams: type ID | type ID ',' listaParams
+listaParams: VALUETYPES ID | VALUETYPES ID ',' listaParams
   ;
 nativeFunc: ID operacao 'input' '(' ')' ';'
           | print';'
