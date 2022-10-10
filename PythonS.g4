@@ -6,12 +6,18 @@ prog: decVars* decFunc* blocoMain
 decVars: type (listaIds | listaAtribs) ';'
     ;
     
-type: 'int'
-    | 'real'
-    | 'string'
-    | 'boolean'
-    | 'void'
-    ;
+// type: 'int'
+//     | 'real'
+//     | 'string'
+//     | 'boolean'
+//     | 'void'
+//     ;
+INT_TYPE: 'int';
+REAL_TYPE: 'real';
+STRING_TYPE: 'string';
+BOOLEAN_TYPE: 'boolean';
+VOID_TYPE: 'void';
+type: INT_TYPE | REAL_TYPE | STRING_TYPE | BOOLEAN_TYPE | VOID_TYPE;
 
 listaIds : ID(',' ID)*
     ;
