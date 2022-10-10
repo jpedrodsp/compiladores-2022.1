@@ -43,9 +43,9 @@ function_parameter: (ID | expr);
 function_parameter_list: function_parameter (',' function_parameter)*;
 function_call: ID '(' function_parameter_list? ')';
 
-break_statement: stmt
-    | 'break'';'
-;
+break_keyword: 'break';
+break_statement: break_keyword ';';
+
 attrib_statement: ID '=' expr;
 for_statement: 'for' ID 'in' 'range' '(' range ')' '{' break_statement '}'
 ;
