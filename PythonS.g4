@@ -68,11 +68,29 @@ print: 'print' '(' printable_expression ')'
 printable_expression: (ID | NUMBER_VALUE | BOOL_VALUE | STRING) (',' (ID | NUMBER_VALUE | BOOL_VALUE | STRING))*;
 
 // todo: test for errors (3x string rule)
-operacao: '!' | '-' | '&&' | '||' | '+' | '-'     | '+' | '*' | '/' | '=='
-        | '!=' | '>=' | '<=' | '>' | '<' | '='
-        | '+=' | '*='
-        ;
+// operacao: '!' | '-' | '&&' | '||' | '+' | '-'     | '+' | '*' | '/' | '=='
+//         | '!=' | '>=' | '<=' | '>' | '<' | '='
+//         | '+=' | '*='
+//         ;
 // todo: describe operator with precedence, and specify them with rules
+NEGATION_OPERATOR: '!';
+MINUS_OPERATOR: '-';
+AND_OPERATOR: '&&';
+OR_OPERATOR: '||';
+SUM_OPERATOR: '+';
+SUB_OPERATOR: MINUS_OPERATOR;
+MULT_OPERATOR: '*';
+DIV_OPERATOR: '/';
+EQUAL_OPERATOR: '==';
+NOT_EQUAL_OPERATOR: '!=';
+GREATER_EQUAL_OPERATOR: '>=';
+LESS_EQUAL_OPERATOR: '<=';
+GREATER_OPERATOR: '>';
+LESS_OPERATOR: '<';
+ASSIGN_OPERATOR: '=';
+PLUS_ASSIGN_OPERATOR: '+=';
+MULT_ASSIGN_OPERATOR: '*=';
+operacao: NEGATION_OPERATOR | MINUS_OPERATOR | AND_OPERATOR | OR_OPERATOR | SUM_OPERATOR | SUB_OPERATOR | MULT_OPERATOR | DIV_OPERATOR | EQUAL_OPERATOR | NOT_EQUAL_OPERATOR | GREATER_EQUAL_OPERATOR | LESS_EQUAL_OPERATOR | GREATER_OPERATOR | LESS_OPERATOR | ASSIGN_OPERATOR | PLUS_ASSIGN_OPERATOR | MULT_ASSIGN_OPERATOR ;
 
 NUMBER_VALUE: INT_VALUE | FLOAT_VALUE;
 INT_VALUE: (NUM)+;
