@@ -35,9 +35,14 @@ stmt: for_statement
     | nativeFunc
     | ID ID operacao ID '(' expr ')' ';'
     | ID (NUMBER_VALUE | ID) ';'
-    | ID'(' ID expr ')' ';'
+    // | ID'(' ID expr ')' ';'
+    | function_call ';'
 ;
 //todo: add func_call rule to statement or attribution
+function_parameter: (ID | expr);
+function_parameter_list: function_parameter (',' function_parameter)*;
+function_call: ID '(' function_parameter_list? ')';
+
 break_statement: stmt
     | 'break'';'
 ;
