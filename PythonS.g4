@@ -22,25 +22,25 @@ decFunc: ('def' ID '(' listaParams* ')' type '{' decVars* stmt+ '}')+
     ;
 blocoMain: 'def' 'main' '(' ')' '{' stmt+  '}'
     ;
-stmt: for
-    | doWhile ';'
-    | if
-    | atrib ';'
+stmt: for_statement
+    | dowhile_statement ';'
+    | if_statement
+    | attrib_statement ';'
     | nativeFunc
     | ID ID operacao ID '(' expr ')' ';'
     | ID (NUMBER_VALUE | ID) ';'
     | ID'(' ID expr ')' ';'
 ;
 //todo: add func_call rule to statement or attribution
-breakStmt: stmt
+break_statement: stmt
     | 'break'';'
 ;
-atrib: ID '=' expr;
-for: 'for' ID 'in' 'range' '(' range ')' '{' breakStmt '}'
+attrib_statement: ID '=' expr;
+for_statement: 'for' ID 'in' 'range' '(' range ')' '{' break_statement '}'
 ;
-doWhile: 'do' '{' breakStmt '}' 'while' '(' expr ')'
+dowhile_statement: 'do' '{' break_statement '}' 'while' '(' expr ')'
     ;
-if: 'if' '(' expr ')' '{' stmt+ '}' ('else' '{' stmt+ '}')?
+if_statement: 'if' '(' expr ')' '{' stmt+ '}' ('else' '{' stmt+ '}')?
 ;
 
 expr: e1= expr operacao term ';'
